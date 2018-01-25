@@ -2,6 +2,11 @@ package cn.cat.springmvc.demo.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+/**
+ * 继承{@AbstractAnnotationConfigDispatcherServletInitializer}来配置springmvc
+ * 这个类是{@WebApplicationInitializer}的实现类.继承这个类可以极大的简化对springmvc的配置
+ *
+ */
 public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     /**
      * 暂时不知道是配置什么的

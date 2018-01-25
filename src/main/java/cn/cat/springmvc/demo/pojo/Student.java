@@ -1,4 +1,4 @@
-package cn.cat.springmvc.demo.config1;
+package cn.cat.springmvc.demo.pojo;
 
 /**
  * @Author: cat

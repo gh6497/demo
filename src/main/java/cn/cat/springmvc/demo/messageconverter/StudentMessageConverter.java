@@ -1,6 +1,6 @@
 package cn.cat.springmvc.demo.messageconverter;
 
-import cn.cat.springmvc.demo.config1.Student;
+import cn.cat.springmvc.demo.pojo.Student;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;

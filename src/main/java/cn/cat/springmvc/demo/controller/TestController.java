@@ -1,11 +1,10 @@
 package cn.cat.springmvc.demo.controller;
 
-import cn.cat.springmvc.demo.config1.Student;
+import cn.cat.springmvc.demo.pojo.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @Author: cat

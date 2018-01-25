@@ -1,4 +1,4 @@
-import cn.cat.springmvc.demo.config2.AppConfig;
+import cn.cat.springmvc.demo.config.AppConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.data.redis.core.StringRedisTemplate;

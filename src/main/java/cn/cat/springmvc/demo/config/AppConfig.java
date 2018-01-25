@@ -1,4 +1,4 @@
-package cn.cat.springmvc.demo.config2;
+package cn.cat.springmvc.demo.config;
 
 import cn.cat.springmvc.demo.controller.MyExceptionHandler;
 import cn.cat.springmvc.demo.converter.DateConverter;
@@ -22,7 +22,6 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.format.FormatterRegistry;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.MultipartResolver;

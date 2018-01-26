@@ -23,6 +23,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -41,6 +42,7 @@ import java.util.List;
  * @PersonHome: http://blog.csdn.net/csdn6497
  * @Description:
  */
+@EnableWebSecurity // 启用spring安全管理
 @EnableWebMvc //启用mvc
 @EnableCaching // 启用缓存注解
 @Configuration //相当一个beans标签里的内容

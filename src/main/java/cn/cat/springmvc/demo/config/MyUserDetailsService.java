@@ -1,5 +1,6 @@
 package cn.cat.springmvc.demo.config;
 
+import cn.cat.springmvc.demo.pojo.User;
 import cn.cat.springmvc.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +19,10 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserService userService;
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-
-        return null;
+        User user = userService.getByUsername(s);
+        if (user == null) {
+            throw new UsernameNotFoundException("用户名不存在！");
+        }
+        return user;
     }
 }

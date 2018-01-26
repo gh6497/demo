@@ -1,5 +1,6 @@
 package cn.cat.springmvc.demo.service.impl;
 
+import cn.cat.springmvc.demo.mapper.UserMapper;
 import cn.cat.springmvc.demo.pojo.User;
 import cn.cat.springmvc.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,10 @@ import javax.swing.text.html.parser.Entity;
 @Service
 
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
-
-
+    @Override
+    public User getByUsername(String username) {
+        UserMapper userMapper = (UserMapper) mapper;
+        User user = userMapper.getByUsername(username);
+        return user;
+    }
 }

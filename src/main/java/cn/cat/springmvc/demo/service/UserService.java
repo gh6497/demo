@@ -8,10 +8,7 @@ import cn.cat.springmvc.demo.pojo.User;
  * @PersonHome: http://blog.csdn.net/csdn6497
  * @Description:
  */
-public interface UserService extends BaseService<User>
-{
-
-
-
+public interface UserService extends BaseService<User> {
+    User getByUsername(String username);
 
 }

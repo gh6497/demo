@@ -1,10 +1,13 @@
 package cn.cat.springmvc.demo.pojo;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 @Table(name = "user")
@@ -20,6 +23,10 @@ public class User implements UserDetails {
 
     private String password;
 
+    private List<GrantedAuthority> authorities;
+    public void setAuthorities(List<GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
     public Integer getId() {
         return id;
     }
@@ -64,7 +71,8 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+
+        return authorities;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package cn.cat.springmvc.demo.controller;
 
-import cn.cat.springmvc.demo.pojo.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +20,5 @@ public class TestController {
 
         return "index";
     }
-    @RequestMapping("/student") @ResponseBody
-    public Student testRuqest(@RequestBody Student student) {
-        return null;
-    }
+
 }

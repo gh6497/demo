@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.cat.springmvc.demo.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="cn.cat.springmvc.demo.pojo.User">
+<mapper namespace="cn.cat.springmvc.demo.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="cn.cat.springmvc.demo.pojo.Role">
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="id" jdbcType="INT" property="ID" />
+    <id column="id" jdbcType="INT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="INT" property="password" />
+
+    <result column="abbr" jdbcType="INT" property="abbr" />
     <result column="status" jdbcType="TINYINT" property="status" />
   </resultMap>
 </mapper>

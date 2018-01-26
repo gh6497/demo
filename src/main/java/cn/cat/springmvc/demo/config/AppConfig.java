@@ -41,7 +41,7 @@ import java.util.List;
  * @PersonHome: http://blog.csdn.net/csdn6497
  * @Description:
  */
-@EnableWebMvc
+@EnableWebMvc //启用mvc
 @EnableCaching // 启用缓存注解
 @Configuration //相当一个beans标签里的内容
 @ComponentScan("cn.cat.springmvc.demo")

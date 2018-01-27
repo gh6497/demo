@@ -3,9 +3,7 @@ package cn.cat.springmvc.demo.config;
 import cn.cat.springmvc.demo.controller.MyExceptionHandler;
 import cn.cat.springmvc.demo.converter.DateConverter;
 import cn.cat.springmvc.demo.intercepter.MyInterceptor;
-import com.alibaba.druid.pool.DruidDataSource;
 import net.sf.ehcache.CacheManager;
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
@@ -13,17 +11,11 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.data.redis.connection.RedisClusterConfiguration;
-import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.format.FormatterRegistry;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.MultipartResolver;
@@ -33,7 +25,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.*;
 import tk.mybatis.spring.mapper.MapperScannerConfigurer;
 
-import javax.sql.DataSource;
 import java.util.Date;
 import java.util.List;
 
@@ -48,8 +39,8 @@ import java.util.List;
 @EnableCaching // 启用缓存注解
 @Configuration //相当一个beans标签里的内容
 @ComponentScan("cn.cat.springmvc.demo")
-@EnableTransactionManagement //注解事务管理器
-@PropertySource("classpath:properties/db.properties") // 加载配置文件
+
+
 public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
 
     @Bean
@@ -93,49 +84,7 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
         ehCacheManagerFactoryBean.setConfigLocation(new ClassPathResource("ehcache.xml"));
         return ehCacheManagerFactoryBean;
     }
-    // 配置 druid数据源
-    @Bean
-    public DataSource dataSource() {
-        DruidDataSource dataSource = new DruidDataSource();
-        System.out.println("env:" + env);
-        String url = env.getProperty("jdbc.driver");
-        dataSource.setDriverClassName(url);
-        dataSource.setUrl(env.getProperty("jdbc.url"));
-        dataSource.setPassword(env.getProperty("jdbc.password"));
-        dataSource.setUsername(env.getProperty("jdbc.username"));
-        return dataSource;
-    }
 
-    // 配置mybatis
-    @Bean
-    public SqlSessionFactoryBean sqlSessionFactoryBean() {
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource());
-        sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("mybatis/SqlMapConfig.xml"));
-        return sqlSessionFactoryBean;
-    }
-    // 配置事物管理器
-    @Bean
-    public DataSourceTransactionManager dataSourceTransactionManager() {
-        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
-        dataSourceTransactionManager.setDataSource(dataSource());
-         return dataSourceTransactionManager;
-    }
-    /**
-     * jedis连接工厂
-     * spring提供了3中配置jedis连接工厂的方式
-     * {@link RedisStandaloneConfiguration} 单机版的配置
-     * {@link RedisClusterConfiguration} 集群版的配置
-     * @return
-     */
-    @Bean
-    public JedisConnectionFactory jedisConnectionFactory() {
-        //
-        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
-        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(redisStandaloneConfiguration);
-
-        return jedisConnectionFactory;
-    }
     /**
      * 配置文件上传解析器
      *
@@ -152,10 +101,7 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
         return new DateConverter();
     }
 
-    @Bean
-    public StringRedisTemplate stringRedisTemplate() {
-        return new StringRedisTemplate(jedisConnectionFactory());
-    }
+
 
     @Bean
     public HandlerInterceptor handlerInterceptor() {

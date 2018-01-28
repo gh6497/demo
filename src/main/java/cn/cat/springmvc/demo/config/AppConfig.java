@@ -14,17 +14,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.cache.RedisCacheWriter;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.*;
-import tk.mybatis.spring.mapper.MapperScannerConfigurer;
-
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -34,19 +37,13 @@ import java.util.List;
  * @PersonHome: http://blog.csdn.net/csdn6497
  * @Description:
  */
-//@EnableWebSecurity // 启用spring安全管理
 @EnableWebMvc //启用mvc
 @EnableCaching // 启用缓存注解
 @Configuration //相当一个beans标签里的内容
 @ComponentScan("cn.cat.springmvc.demo")
-
-
 public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return new MyUserDetailsService();
-    }
+
 
     @Override
     public void setEnvironment(Environment environment) {
@@ -55,39 +52,56 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
 
     private Environment env;
 
-    /**
-     * 通用mapper扫描的配置
-     */
-    @Bean
-    public MapperScannerConfigurer mapperScannerConfigurer() {
-        MapperScannerConfigurer scannerConfigurer = new MapperScannerConfigurer();
-        scannerConfigurer.setBasePackage("cn.cat.springmvc.demo.mapper");
-        return scannerConfigurer;
-    }
+
     /**
      * ehcache管理器
      */
-    @Bean
+   /* @Bean
     public EhCacheCacheManager cacheManager(CacheManager cacheManager) {
         EhCacheCacheManager ehCacheCacheManager = new EhCacheCacheManager();
         ehCacheCacheManager.setCacheManager(cacheManager);
         return ehCacheCacheManager;
-    }
+    }*/
 
     /**
-     *  ehcache管理器工厂bean
+     * ehcache管理器工厂bean
+     *
      * @return
      */
-    @Bean
+   /* @Bean
     public EhCacheManagerFactoryBean ehCacheManagerFactoryBean() {
         EhCacheManagerFactoryBean ehCacheManagerFactoryBean = new EhCacheManagerFactoryBean();
         ehCacheManagerFactoryBean.setConfigLocation(new ClassPathResource("ehcache.xml"));
         return ehCacheManagerFactoryBean;
+    }*/
+
+    @Bean
+    public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
+        // 创建spring-reids默认实现的rediscache管理器
+        return RedisCacheManager.create(connectionFactory);
     }
+
 
     /**
      * 配置文件上传解析器
      *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+
      * @return
      */
     @Bean
@@ -96,11 +110,11 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
 
         return multipartResolver;
     }
+
     @Bean
-    public Converter<String,Date> dateConverter() {
+    public Converter<String, Date> dateConverter() {
         return new DateConverter();
     }
-
 
 
     @Bean
@@ -111,8 +125,10 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
     public HandlerExceptionResolver handlerExceptionResolver() {
         return new MyExceptionHandler();
     }
+
     /**
      * 配置静态资源映射
+     *
      * @param registry
      */
     @Override
@@ -123,6 +139,7 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
 
     /**
      * 配置转换器
+     *
      * @param
      */
     @Override
@@ -132,6 +149,7 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
 
     /**
      * 配置视图解析器
+     *
      * @param
      */
     @Override
@@ -141,6 +159,7 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
 
     /**
      * 配置拦截器
+     *
      * @param registry
      */
     @Override
@@ -150,6 +169,7 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
 
     /**
      * 配置异步支持
+     *
      * @param configurer
      */
     @Override
@@ -159,6 +179,7 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
 
     /**
      * 配置异常处理
+     *
      * @param resolvers
      */
     @Override
@@ -170,7 +191,6 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/toUpload").setViewName("upload");
     }
-
 
 
 }

@@ -18,12 +18,14 @@ import javax.swing.text.html.parser.Entity;
  * @Description:
  */
 @Service
-
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
+
     @Override
-    public User getByUsername(String username) {
-        UserMapper userMapper = (UserMapper) mapper;
-        User user = userMapper.getByUsername(username);
-        return user;
+    @Cacheable(key = "#id", value = "redis")
+    public User get(Integer id) {
+        User user = mapper.selectByPrimaryKey(id);
+        System.out.println(user);
+        return  user;
     }
+
 }

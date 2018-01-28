@@ -5,6 +5,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
@@ -13,6 +14,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import tk.mybatis.spring.mapper.MapperScannerConfigurer;
 
 import javax.sql.DataSource;
 
@@ -23,6 +25,7 @@ import javax.sql.DataSource;
  * @Description:
  */
 @Configuration
+@PropertySource("classpath:properties/db.properties")
 @EnableTransactionManagement //注解事务管理器
 public class DaoConfig implements EnvironmentAware{
 
@@ -45,6 +48,15 @@ public class DaoConfig implements EnvironmentAware{
         return dataSource;
     }
 
+    /**
+     * 通用mapper扫描的配置
+     */
+    @Bean
+    public MapperScannerConfigurer mapperScannerConfigurer() {
+        MapperScannerConfigurer scannerConfigurer = new MapperScannerConfigurer();
+        scannerConfigurer.setBasePackage("cn.cat.springmvc.demo.mapper");
+        return scannerConfigurer;
+    }
     // 配置mybatis
     @Bean
     public SqlSessionFactoryBean sqlSessionFactoryBean() {

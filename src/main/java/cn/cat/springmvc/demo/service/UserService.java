@@ -9,6 +9,6 @@ import cn.cat.springmvc.demo.pojo.User;
  * @Description:
  */
 public interface UserService extends BaseService<User> {
-    User getByUsername(String username);
+    User get(Integer id);
 
 }

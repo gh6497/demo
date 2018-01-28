@@ -19,14 +19,13 @@ public class UserController {
     private UserService userService;
     @PostMapping("/users")
     public User add(User user) {
-        user.setName("name" + index++);
         userService.save(user);
         return user;
     }
 
-    @GetMapping("/users/{name}")
-    public User get(@PathVariable("name") String name) {
-        User user = userService.selectByKey(name);
+    @GetMapping("/users/{id}")
+    public User get(@PathVariable("id") Integer id) {
+        User user = userService.get(id);
         return user;
     }
 /*

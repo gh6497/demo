@@ -1,6 +1,9 @@
 package cn.cat.springmvc.demo.config;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Filter;
 
 /**
  * 继承{@AbstractAnnotationConfigDispatcherServletInitializer}来配置springmvc
@@ -41,11 +44,11 @@ public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServl
      * 也在这里也不能配置拦截路径,哈哈,因为我们用的springmvc而不是servlet
      * @return
      */
-    /*@Override
+    @Override
     protected Filter[] getServletFilters() {
         // 配置spring乱码过滤器
         return new Filter[]{new CharacterEncodingFilter("utf-8")};
-    }*/
+    }
 
     /**
      * 重写这个方法配置是否支持异步 (默认支持)

@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Table(name = "user")
-public class User implements UserDetails {
+public class User  implements Serializable{
     @Id
     private Integer id;
 
@@ -23,10 +24,7 @@ public class User implements UserDetails {
 
     private String password;
 
-    private List<GrantedAuthority> authorities;
-    public void setAuthorities(List<GrantedAuthority> authorities) {
-        this.authorities = authorities;
-    }
+
     public Integer getId() {
         return id;
     }
@@ -43,7 +41,6 @@ public class User implements UserDetails {
         this.name = name;
     }
 
-    @Override
     public String getUsername() {
         return username;
     }
@@ -60,7 +57,6 @@ public class User implements UserDetails {
         this.status = status;
     }
 
-    @Override
     public String getPassword() {
         return password;
     }
@@ -70,28 +66,13 @@ public class User implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        return authorities;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", status=" + status +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

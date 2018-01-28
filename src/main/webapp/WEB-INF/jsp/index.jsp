@@ -14,6 +14,7 @@
 </head>
 <body>
     <h1>index.jsp</h1>
+
     <script src="/js/index.js"></script>
 </body>
 </html>

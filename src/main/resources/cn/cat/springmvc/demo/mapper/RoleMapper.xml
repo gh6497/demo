@@ -5,10 +5,10 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="id" jdbcType="INT" property="id" />
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
 
-    <result column="abbr" jdbcType="INT" property="abbr" />
+    <result column="abbr" jdbcType="VARCHAR" property="abbr" />
     <result column="status" jdbcType="TINYINT" property="status" />
   </resultMap>
 </mapper>

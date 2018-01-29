@@ -24,7 +24,7 @@ import javax.sql.DataSource;
  * @PersonHome: http://blog.csdn.net/csdn6497
  * @Description:
  */
-@Configuration
+
 @PropertySource("classpath:properties/db.properties")
 @EnableTransactionManagement //注解事务管理器
 public class DaoConfig implements EnvironmentAware{

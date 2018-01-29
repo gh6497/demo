@@ -39,7 +39,6 @@ import java.util.List;
  */
 @EnableWebMvc //启用mvc
 @EnableCaching // 启用缓存注解
-@Configuration //相当一个beans标签里的内容
 @ComponentScan("cn.cat.springmvc.demo")
 public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
 
@@ -84,24 +83,6 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
 
     /**
      * 配置文件上传解析器
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-
      * @return
      */
     @Bean

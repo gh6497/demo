@@ -18,6 +18,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     @PostMapping("/users")
+
     public User add(User user) {
         userService.save(user);
         return user;
@@ -28,20 +29,11 @@ public class UserController {
         User user = userService.get(id);
         return user;
     }
-/*
-    @DeleteMapping("/users/{name}")
-    public User delete(@PathVariable("name") String name) {
-        User user = users.remove(name);
-        System.out.println(user);
 
-        return user;
+    @PostMapping("/users/login")
+    public String login(@RequestParam("username")String username,
+                        @RequestParam("password")String password) {
+
+        return null;
     }
-
-    @PutMapping("/users/{name}")
-    public User udpate(@PathVariable("name") String name, User user) {
-        users.remove(name);
-        users.put(name, user);
-        System.out.println(user);
-        return user;
-    }*/
 }

@@ -12,7 +12,7 @@ import javax.servlet.Filter;
  */
 public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     /**
-     * 暂时不知道是配置什么的
+     * 与web没有什么关系的配置类，如数据库的事务，缓存，消息队列等
      * @return
      */
     @Override
@@ -23,7 +23,7 @@ public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServl
     }
 
     /**
-     * 实现这个方法注册整个应用程序的配置
+     * servlet 相关的配置类
      * @return
      */
     @Override

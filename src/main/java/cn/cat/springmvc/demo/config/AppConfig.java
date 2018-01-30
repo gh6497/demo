@@ -62,7 +62,11 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
         return ehCacheCacheManager;
     }*/
 
-    /**
+    /** private String name ;
+     *  private int age;
+     *  private gender;
+     *  privat Integer id;
+     *  private
      * ehcache管理器工厂bean
      *
      * @return

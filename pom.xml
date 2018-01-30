@@ -6,6 +6,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <properties>
+        <shiro.version>1.4.0</shiro.version>
         <junit.version>4.12</junit.version>
         <spring.version>5.0.2.RELEASE</spring.version>
         <spring.security.version>5.0.1.RELEASE</spring.security.version>
@@ -39,6 +40,11 @@
         <ehcache.version>2.10.3</ehcache.version>
     </properties>
         <dependencies>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-all</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
             <dependency>
                 <groupId>tk.mybatis</groupId>
                 <artifactId>mapper</artifactId>

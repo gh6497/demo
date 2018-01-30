@@ -20,14 +20,16 @@ import java.util.Map;
 @Controller
 public class UploadController {
     @PostMapping("/upload") @ResponseBody
-    // 此处的MultipartFile的参数名必须于表单中的name属性对应
+    /**
+    此处的MultipartFile的参数名必须于表单中的name属性对应
+     */
     public Map<String, String> upload(@RequestParam("pic") MultipartFile pic) throws IOException {
         String name = pic.getName();
 
         System.out.println(name);
         String originalFilename = pic.getOriginalFilename();
         System.out.println(originalFilename);
-
+// fdsa
         File file = new File("d:/test/" + originalFilename);
         if (file.exists()) {
             file.delete();

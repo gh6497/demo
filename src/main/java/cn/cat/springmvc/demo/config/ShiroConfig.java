@@ -22,6 +22,11 @@ import javax.servlet.ServletException;
  * @Description:
  */
 
+/**
+ * 认证的过程
+ * Subject#login --> Sercuriy#login --> Authenticator#authenticate --> Realm#getAuthenticationInfo
+ *  --> Realm#doGetAuthenticationInfo(即我们自定义的域)
+ */
 public class ShiroConfig implements WebApplicationInitializer{
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
@@ -39,8 +44,10 @@ public class ShiroConfig implements WebApplicationInitializer{
     }
 
     @Bean
-    public DefaultWebSecurityManager securityManager() {
-        return null;
+    public DefaultWebSecurityManager securityManager(AuthorizingRealm realm) {
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        securityManager.setRealm(realm);
+        return securityManager;
     }
 
     @Bean

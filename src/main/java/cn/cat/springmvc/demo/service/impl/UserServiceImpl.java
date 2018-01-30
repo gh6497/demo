@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.swing.text.html.parser.Entity;
+import java.util.List;
 
 /**
  * @Author: cat
@@ -28,4 +29,14 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         return  user;
     }
 
+    @Override
+    public User getByUsername(String username) {
+        User user = new User();
+        user.setUsername(username);
+        List<User> users = mapper.select(user);
+        if (users == null || users.size() > 1) {
+            return null;
+        }
+        return users.get(0);
+    }
 }

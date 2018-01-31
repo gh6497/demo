@@ -1,4 +1,4 @@
-import cn.cat.springmvc.demo.config.AppConfig;
+import cn.cat.springmvc.demo.config.WebConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * @Description:
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = AppConfig.class)
+@ContextConfiguration(classes = WebConfig.class)
 public class RedisTest {
     @Resource(name= "stringRedisTemplate")
     private StringRedisTemplate srt;

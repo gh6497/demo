@@ -10,4 +10,5 @@ import tk.mybatis.mapper.common.Mapper;
  * @Description:
  */
 public interface RoleMapper extends Mapper<Role> {
+
 }

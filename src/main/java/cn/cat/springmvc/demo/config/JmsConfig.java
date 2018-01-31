@@ -28,7 +28,7 @@ import javax.jms.TextMessage;
  * @Description:
  */
 
-@EnableJms
+//@EnableJms
 public class JmsConfig implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;

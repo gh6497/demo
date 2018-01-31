@@ -12,10 +12,9 @@ public class CustomCredentialsMatcher extends SimpleCredentialsMatcher {
 	public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
 		//1.向下转型 
 		UsernamePasswordToken upToken = (UsernamePasswordToken) token;
-		
-
-		
-		return false;
+		Object credentials = info.getCredentials();
+		String pwd = new String(upToken.getPassword());
+		return credentials.equals(pwd);
 	}
 
 	

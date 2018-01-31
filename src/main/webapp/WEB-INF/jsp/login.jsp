@@ -16,18 +16,18 @@
     <%-- 引入bootstrap css--%>
     <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-<form class="bs-example bs-example-form" data-example-id="simple-input-groups" action="">
+<form class="bs-example bs-example-form" data-example-id="simple-input-groups" action="/users/login" method="post">
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">用户名</span>
-        <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" name="username"  aria-describedby="basic-addon1">
     </div>
     <br>
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon2">密码</span>
-        <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2">
+        <input type="text" class="form-control" name="password"  aria-describedby="basic-addon2">
     </div>
     <br>
     <div class="input-group">
@@ -35,6 +35,7 @@
         <input type="submit" class="form-control" value="登陆" aria-describedby="basic-addon3">
     </div>
 </form>
+<script src="/libs/jquery/jquery.min.js"></script>
 <%-- 引入bootstrap js--%>
 <script src="/libs/bootstrap/js/bootstrap.min.js"></script>
 </body>

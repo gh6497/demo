@@ -2,6 +2,11 @@ package cn.cat.springmvc.demo.controller;
 
 import cn.cat.springmvc.demo.pojo.User;
 import cn.cat.springmvc.demo.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +18,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 public class UserController {
-    private static int index = 1;
-//    private static ConcurrentHashMap<String, User> users = new ConcurrentHashMap<>();
+
     @Autowired
     private UserService userService;
     @PostMapping("/users")
@@ -33,7 +37,14 @@ public class UserController {
     @PostMapping("/users/login")
     public String login(@RequestParam("username")String username,
                         @RequestParam("password")String password) {
-
-        return null;
+        // 检查用户名和密码 略
+        Subject subject = SecurityUtils.getSubject();
+        AuthenticationToken token = new UsernamePasswordToken(username, password);
+        try {
+            subject.login(token);
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+        }
+        return "index";
     }
 }

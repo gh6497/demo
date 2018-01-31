@@ -11,4 +11,5 @@
     <result column="abbr" jdbcType="VARCHAR" property="abbr" />
     <result column="status" jdbcType="TINYINT" property="status" />
   </resultMap>
+
 </mapper>

@@ -1,6 +1,7 @@
 package cn.cat.springmvc.demo.config;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
@@ -12,23 +13,27 @@ import javax.servlet.Filter;
  */
 public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     /**
-     * 与web没有什么关系的配置类，如数据库的事务，缓存，消息队列等
+     * 这个Class对象注解的配置会加载到spring容器中，
+     * shiro相关的配置只能加载在spring的容器中，如果加载在springmvc的容器中，
+     * 会报找不到bean的错误，因为访问不到springmvc容器的东西
      * @return
      */
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{
-                DaoConfig.class,JmsConfig.class
+                DaoConfig.class, ShiroConfig.class
         };
     }
 
     /**
-     * servlet 相关的配置类
+     * 这个Class对象数组中的配置会加载到springmvc的容器，所以这里只能用来配置
+     * springmvc及dispatcher控制器的相关配置，配置别的可能会出错
      * @return
      */
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{AppConfig.class};
+        return new Class[]{WebConfig.class
+        };
     }
 
     /**
@@ -48,8 +53,12 @@ public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServl
      */
     @Override
     protected Filter[] getServletFilters() {
-        // 配置spring乱码过滤器
-        return new Filter[]{new CharacterEncodingFilter("utf-8")};
+        // spring代理shiro的过滤器
+        DelegatingFilterProxy shiroFilter = new DelegatingFilterProxy("shiroFilter");
+        shiroFilter.setTargetFilterLifecycle(true);
+        return new Filter[]{new CharacterEncodingFilter("utf-8"),
+                shiroFilter
+        };
     }
 
     /**

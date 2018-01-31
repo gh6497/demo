@@ -43,4 +43,6 @@ public interface BaseService<T> {
     int updateNotNull(T entity);
 
     List<T> selectByExample(Object example);
+
+    List<T> getAll();
 }

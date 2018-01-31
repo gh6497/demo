@@ -48,5 +48,10 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         return mapper.selectByExample(example);
     }
 
+    @Override
+    public List<T> getAll() {
+        return mapper.selectAll();
+    }
+
 
 }

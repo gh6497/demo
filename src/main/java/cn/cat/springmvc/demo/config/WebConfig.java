@@ -40,7 +40,7 @@ import java.util.List;
 @EnableWebMvc //启用mvc
 @EnableCaching // 启用缓存注解
 @ComponentScan("cn.cat.springmvc.demo")
-public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
+public class WebConfig implements WebMvcConfigurer, EnvironmentAware {
 
 
 
@@ -118,8 +118,8 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/css/**", "/js/**")
-                .addResourceLocations("/css/", "/js/");
+        registry.addResourceHandler("/css/**", "/js/**","/libs/**")
+                .addResourceLocations("/css/", "/js/", "/libs/");
     }
 
     /**
@@ -175,6 +175,7 @@ public class AppConfig implements WebMvcConfigurer, EnvironmentAware {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/toUpload").setViewName("upload");
+        registry.addViewController("/login").setViewName("login");
     }
 
 

@@ -2,6 +2,8 @@ package cn.cat.springmvc.demo.config;
 
 import cn.cat.springmvc.demo.controller.MyExceptionHandler;
 import cn.cat.springmvc.demo.converter.DateConverter;
+import cn.cat.springmvc.demo.exception.GloaleExecptionHandler;
+import cn.cat.springmvc.demo.intercepter.ErrorIntercepor;
 import cn.cat.springmvc.demo.intercepter.MyInterceptor;
 import net.sf.ehcache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -20,6 +22,9 @@ import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -37,6 +42,7 @@ import java.util.List;
  * @PersonHome: http://blog.csdn.net/csdn6497
  * @Description:
  */
+
 @EnableWebMvc //启用mvc
 @EnableCaching // 启用缓存注解
 @ComponentScan("cn.cat.springmvc.demo")
@@ -103,12 +109,12 @@ public class WebConfig implements WebMvcConfigurer, EnvironmentAware {
 
 
     @Bean
-    public HandlerInterceptor handlerInterceptor() {
-        return new MyInterceptor();
+    public HandlerInterceptor errorInterceptor() {
+        return new ErrorIntercepor();
     }
 
     public HandlerExceptionResolver handlerExceptionResolver() {
-        return new MyExceptionHandler();
+        return new GloaleExecptionHandler();
     }
 
     /**
@@ -149,7 +155,7 @@ public class WebConfig implements WebMvcConfigurer, EnvironmentAware {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(handlerInterceptor());
+        registry.addInterceptor(errorInterceptor());
     }
 
     /**
@@ -169,7 +175,7 @@ public class WebConfig implements WebMvcConfigurer, EnvironmentAware {
      */
     @Override
     public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-//        resolvers.add(handlerExceptionResolver());
+        resolvers.add(handlerExceptionResolver());
     }
 
     @Override

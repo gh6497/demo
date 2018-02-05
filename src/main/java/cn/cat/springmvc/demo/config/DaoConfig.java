@@ -4,7 +4,6 @@ import com.alibaba.druid.pool.DruidDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
@@ -59,22 +58,22 @@ public class DaoConfig implements EnvironmentAware{
     }
     // 配置mybatis
     @Bean
-    public SqlSessionFactoryBean sqlSessionFactoryBean() {
+    public SqlSessionFactoryBean sqlSessionFactoryBean(DataSource dataSource) {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource());
+        sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("mybatis/SqlMapConfig.xml"));
         return sqlSessionFactoryBean;
     }
     // 配置事物管理器
     @Bean
-    public DataSourceTransactionManager dataSourceTransactionManager() {
+    public DataSourceTransactionManager dataSourceTransactionManager(DataSource dataSource) {
         DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
-        dataSourceTransactionManager.setDataSource(dataSource());
+        dataSourceTransactionManager.setDataSource(dataSource);
         return dataSourceTransactionManager;
     }
     /**
      * jedis连接工厂
-     * spring提供了3中配置jedis连接工厂的方式
+     * spring提供了2中配置jedis连接工厂的方式
      * {@link RedisStandaloneConfiguration} 单机版的配置
      * {@link RedisClusterConfiguration} 集群版的配置
      * @return

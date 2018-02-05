@@ -2,21 +2,24 @@ package cn.cat.springmvc.demo.pojo;
 
 
 
+import org.hibernate.validator.constraints.Length;
+
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 
 @Table(name = "user")
 public class User  implements Serializable{
     private static final long serialVersionUID = 1911539221355857494L;
     @Id
     private Integer id;
-
+    @Max(6)
     private String name;
-
+    @Length(min = 6, max = 10)
     private String username;
 
-    private Byte status;
-
+    private Byte status = 0;
+    @Length(min = 6, max = 15)
     private String password;
 
 

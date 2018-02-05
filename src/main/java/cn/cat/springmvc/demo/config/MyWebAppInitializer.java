@@ -21,7 +21,7 @@ public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServl
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{
-                DaoConfig.class, ShiroConfig.class
+                DaoConfig.class
         };
     }
 
@@ -54,10 +54,10 @@ public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServl
     @Override
     protected Filter[] getServletFilters() {
         // spring代理shiro的过滤器
-        DelegatingFilterProxy shiroFilter = new DelegatingFilterProxy("shiroFilter");
-        shiroFilter.setTargetFilterLifecycle(true);
-        return new Filter[]{new CharacterEncodingFilter("utf-8"),
-                shiroFilter
+//        DelegatingFilterProxy shiroFilter = new DelegatingFilterProxy("shiroFilter");
+//        shiroFilter.setTargetFilterLifecycle(true);
+        return new Filter[]{new CharacterEncodingFilter("utf-8")
+
         };
     }
 

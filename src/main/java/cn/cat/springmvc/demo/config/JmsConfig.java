@@ -7,10 +7,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.annotation.JmsListener;
-import org.springframework.jms.annotation.JmsListeners;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.destination.BeanFactoryDestinationResolver;
@@ -28,8 +25,9 @@ import javax.jms.TextMessage;
  * @Description:
  */
 
-//@EnableJms
+
 public class JmsConfig implements ApplicationContextAware {
+
 
     private ApplicationContext applicationContext;
 
@@ -60,7 +58,9 @@ public class JmsConfig implements ApplicationContextAware {
     public void processMessage(Message message) {
         if (message instanceof TextMessage) {
             TextMessage textMessage = (TextMessage) message;
+
             try {
+
                 System.out.println(textMessage.getText());
             } catch (JMSException e) {
                 e.printStackTrace();

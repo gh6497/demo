@@ -28,7 +28,7 @@ import java.util.Map;
 
 /**
  * 认证的过程
- * Subject#login --> Sercuriy#login --> Authenticator#authenticate --> Realm#getAuthenticationInfo
+ * Subject#login --> Security#login --> Authenticator#authenticate --> Realm#getAuthenticationInfo
  * --> Realm#doGetAuthenticationInfo(即我们自定义的域)
  */
 
@@ -56,12 +56,12 @@ public class ShiroConfig {
      * @return
      */
     @Bean("shiroFilter")
-    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager, RoleService roleService) {
+    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setLoginUrl("/login");
         shiroFilter.setSuccessUrl("/");
         shiroFilter.setSecurityManager(securityManager);
-        List<Role> roles = roleService.getAll();
+
 
         Map<String, String> map = new HashMap<>(0);
         /*

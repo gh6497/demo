@@ -1,0 +1,67 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Java template
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+.gitignore
+.idea/artifacts/spring_javaconfig_war.xml
+.idea/artifacts/spring_javaconfig_war_exploded.xml
+.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml
+.idea/libraries/Maven__com_fasterxml_classmate_1_3_1.xml
+.idea/libraries/Maven__com_google_inject_extensions_guice_multibindings_3_0.xml
+.idea/libraries/Maven__com_google_inject_guice_3_0.xml
+.idea/libraries/Maven__com_hazelcast_hazelcast_3_7_2.xml
+.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_9_3.xml
+.idea/libraries/Maven__commons_collections_commons_collections_3_2_2.xml
+.idea/libraries/Maven__javax_inject_javax_inject_1.xml
+.idea/libraries/Maven__javax_validation_validation_api_1_1_0_Final.xml
+.idea/libraries/Maven__net_sf_ehcache_ehcache_core_2_6_11.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_all_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_aspectj_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_cache_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_config_core_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_config_ogdl_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_core_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_crypto_cipher_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_crypto_core_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_crypto_hash_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_ehcache_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_event_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_guice_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_hazelcast_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_lang_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_quartz_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_spring_1_4_0.xml
+.idea/libraries/Maven__org_apache_shiro_shiro_web_1_4_0.xml
+.idea/libraries/Maven__org_aspectj_aspectjrt_1_8_9.xml
+.idea/libraries/Maven__org_hibernate_hibernate_validator_5_4_1_Final.xml
+.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_3_0_Final.xml
+.idea/libraries/Maven__org_opensymphony_quartz_quartz_1_6_1.xml
+.idea/libraries/Maven__org_projectlombok_lombok_1_16_20.xml
+.idea/smartfox_info.xml
+.idea/workspace.xml
+src/main/java/cn/cat/springmvc/demo/messageconverter/
+src/main/java/cn/cat/springmvc/demo/pojo/Taaaaa.java
+src/main/webapp/libs/jquery/
+src/test/java/MybatisTest.java
+target/

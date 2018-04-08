@@ -7,13 +7,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import tk.mybatis.spring.mapper.MapperScannerConfigurer;
 
 import javax.sql.DataSource;
 
@@ -23,7 +27,7 @@ import javax.sql.DataSource;
  * @PersonHome: http://blog.csdn.net/csdn6497
  * @Description:
  */
-
+//@EnableJpaRepositories("cn.cat.springmvc.demo.jpa")
 @PropertySource("classpath:properties/db.properties")
 @EnableTransactionManagement //注解事务管理器
 public class DaoConfig implements EnvironmentAware{
@@ -47,15 +51,20 @@ public class DaoConfig implements EnvironmentAware{
         return dataSource;
     }
 
-    /**
-     * 通用mapper扫描的配置
-     */
-    @Bean
-    public MapperScannerConfigurer mapperScannerConfigurer() {
-        MapperScannerConfigurer scannerConfigurer = new MapperScannerConfigurer();
-        scannerConfigurer.setBasePackage("cn.cat.springmvc.demo.mapper");
-        return scannerConfigurer;
-    }
+   /* @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        vendorAdapter.setGenerateDdl(true);
+
+        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+        factory.setJpaVendorAdapter(vendorAdapter);
+        factory.setPackagesToScan("com.acme.domain");
+        factory.setDataSource(dataSource());
+        return factory;
+    }*/
+
+
     // 配置mybatis
     @Bean
     public SqlSessionFactoryBean sqlSessionFactoryBean(DataSource dataSource) {
@@ -87,7 +96,7 @@ public class DaoConfig implements EnvironmentAware{
         return jedisConnectionFactory;
     }
 
-    @Override
+
     public void setEnvironment(Environment environment) {
         this.env = environment;
     }

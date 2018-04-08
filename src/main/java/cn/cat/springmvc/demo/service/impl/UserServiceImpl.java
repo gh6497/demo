@@ -1,15 +1,10 @@
 package cn.cat.springmvc.demo.service.impl;
 
-import cn.cat.springmvc.demo.mapper.UserMapper;
+import cn.cat.springmvc.demo.jpa.UserRepository;
 import cn.cat.springmvc.demo.pojo.User;
 import cn.cat.springmvc.demo.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import tk.mybatis.mapper.entity.Example;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 /**
@@ -20,16 +15,20 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
-
-    @Override
+    private UserRepository userRepository;
+    /*@Override
     @Cacheable(key = "#id", value = "redis")
     public User get(Integer id) {
         User user = mapper.selectByPrimaryKey(id);
         System.out.println(user);
         return  user;
+    }*/
+
+    public User get(Integer id) {
+        return null;
     }
 
-    @Override
+
     public User getByUsername(String username) {
         User user = new User();
         user.setUsername(username);
@@ -38,5 +37,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
             return null;
         }
         return users.get(0);
+
+    }
+
+    @Override
+    public User getUserById(Integer id) {
+        return userRepository.getUserById(id);
     }
 }
